@@ -16,6 +16,9 @@ var labs = require('./routes/lab');
 var opds = require('./routes/opd');
 var medicalhistories = require('./routes/medicalhistory');
 var diseases = require('./routes/disease');
+var staffe = require('./routes/staff');
+
+
 
 var app = express();
 
@@ -35,6 +38,16 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/doctors', doctors);
 app.use('/patients', patients);
+app.use('/wards', wards);
+app.use('/rooms', rooms);
+app.use('/emergencies',emergencies);
+app.use('/labs',labs);
+app.use('/opds',opds);
+app.use('/medicalhistories',medicalhistories);
+app.use('/diseases',diseases);
+app.use('/staffe',staffe);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

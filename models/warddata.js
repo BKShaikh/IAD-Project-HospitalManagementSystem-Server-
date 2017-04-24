@@ -2,9 +2,8 @@
 module.exports = function (sequelize, DataTypes) {
   var wardData = sequelize.define('wardData', {
     floorNo: DataTypes.INTEGER,
-    noOfBeds: DataTypes.INTEGER,
-    doctorID: DataTypes.INTEGER,
-    patientId: DataTypes.INTEGER,
+    totalNoOfBeds: DataTypes.INTEGER,
+    noOfBedsEmpty: DataTypes.INTEGER,
     wardcategory: DataTypes.STRING,
     wardsgender: DataTypes.STRING,
     assignedDutyDr: DataTypes.STRING
@@ -12,6 +11,9 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
+          wardData.hasMany(models.patientdata, { as: 'patientdata', foreignKey: 'patientId' }),
+          wardData.hasMany(models.doctordata, { as: 'doctorata', foreignKey: 'doctorId' })
+          
         }
       }
     });

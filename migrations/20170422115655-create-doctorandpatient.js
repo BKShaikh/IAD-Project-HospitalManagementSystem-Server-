@@ -1,21 +1,18 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('labdata', {
+    return queryInterface.createTable('doctorandpatients', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      patientId: {
+      doctorId: {
         type: Sequelize.INTEGER
       },
-      testResultDate: {
-        type: Sequelize.DATEONLY
-      },
-      receptionistName: {
-        type: Sequelize.STRING
+      patientId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +25,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('labdata');
+    return queryInterface.dropTable('doctorandpatients');
   }
 };

@@ -3,9 +3,10 @@ var router = express.Router();
 var db = require('../models/index');
 
 
+
 router.get('/', function (req, res, next) {
 
-  db.opdData.findAll({}).then(
+  db.staffdata.findAll({}).then(
     function (response) {
       res.send(response);
     },
@@ -23,6 +24,7 @@ router.get('/', function (req, res, next) {
 
 
 });
+
 
 
 module.exports = router;

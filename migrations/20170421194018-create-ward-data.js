@@ -11,13 +11,10 @@ module.exports = {
       floorNo: {
         type: Sequelize.INTEGER
       },
-      noOfBeds: {
+      totalNoOfBeds: {
         type: Sequelize.INTEGER
       },
-      doctorID: {
-        type: Sequelize.INTEGER
-      },
-      patientId: {
+      noOfBedsEmpty: {
         type: Sequelize.INTEGER
       },
       wardcategory: {

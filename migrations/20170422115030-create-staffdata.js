@@ -1,42 +1,45 @@
 'use strict';
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('medicalhistorydata', {
+  up: function(queryInterface, Sequelize) {
+    return queryInterface.createTable('staffdata', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      patientId: {
+      firstname: {
+        type: Sequelize.STRING
+      },
+      lastname: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      cnicNo: {
+        type: Sequelize.STRING
+      },
+      city: {
+        type: Sequelize.STRING
+      },
+      country: {
+        type: Sequelize.STRING
+      },
+      post: {
+        type: Sequelize.STRING
+      },
+      phoneNo: {
+        type: Sequelize.STRING
+      },
+      doctorID: {
         type: Sequelize.INTEGER
       },
-      bloodGroup: {
-        type: Sequelize.STRING
-      },
-      lastDateOfCheckup: {
-        type: Sequelize.DATEONLY
-      },
-      lastDateOfDischarge: {
-        type: Sequelize.DATEONLY
-      },
-      familyDiseases: {
-        type: Sequelize.STRING
-      },
-      habbits: {
-        type: Sequelize.STRING
-      },
-      prescribedMedicines: {
-        type: Sequelize.STRING
-      },
-      mainDiseases: {
-        type: Sequelize.STRING
-      },
-      otherPotentialDiseases: {
-        type: Sequelize.STRING
-      },
-      lastDateofAdmit: {
-        type: Sequelize.DATEONLY
+      patientID: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -48,7 +51,7 @@ module.exports = {
       }
     });
   },
-  down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('medicalhistorydata');
+  down: function(queryInterface, Sequelize) {
+    return queryInterface.dropTable('staffdata');
   }
 };

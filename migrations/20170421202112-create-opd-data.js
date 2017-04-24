@@ -17,7 +17,7 @@ module.exports = {
       assignedToDr: {
         type: Sequelize.STRING
       },
-      roomNoId: {
+      roomId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

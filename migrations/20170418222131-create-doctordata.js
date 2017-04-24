@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('doctordata', {
       id: {
         allowNull: false,
@@ -41,6 +41,15 @@ module.exports = {
       emergencyschedule: {
         type: Sequelize.STRING
       },
+      roomId: {
+        type: Sequelize.INTEGER
+      },
+      wardId: {
+        type: Sequelize.INTEGER
+      },
+      emergencyId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -51,7 +60,7 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
+  down: function (queryInterface, Sequelize) {
     return queryInterface.dropTable('doctordata');
   }
 };
