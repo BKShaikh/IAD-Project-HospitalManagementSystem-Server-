@@ -17,6 +17,7 @@ var opds = require('./routes/opd');
 var medicalhistories = require('./routes/medicalhistory');
 var diseases = require('./routes/disease');
 var staffe = require('./routes/staff');
+var accounts = require('./routes/account')
 
 
 
@@ -46,6 +47,7 @@ app.use('/opds',opds);
 app.use('/medicalhistories',medicalhistories);
 app.use('/diseases',diseases);
 app.use('/staffe',staffe);
+app.use('/accounts',accounts);
 
 
 

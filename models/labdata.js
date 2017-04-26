@@ -15,7 +15,9 @@ module.exports = function (sequelize, DataTypes) {
             as: 'doctordata'
           }
         }),
-        labdata.belongsTo(models.patientdata, { foreignKey: 'patientId', as: "patientdata" })
+        labdata.belongsTo(models.patientdata,
+         { foreignKey: 'patientId', as: "patientdata" }
+         )
         }
       }
     });

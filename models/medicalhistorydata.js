@@ -23,7 +23,9 @@ module.exports = function(sequelize, DataTypes) {
             as: 'doctordata'
           }
         }),
-        medicalhistorydata.belongsTo(models.patientdata,{foreignKey:"patientId",as:"patientdata"})
+        medicalhistorydata.belongsTo(models.patientdata,
+        {foreignKey:"patientId",as:"patientdata"}
+        )
       }
     }
   });

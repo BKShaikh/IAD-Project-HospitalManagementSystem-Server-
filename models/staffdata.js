@@ -16,8 +16,12 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
-          staffdata.belongsTo(models.doctordata, {foreignKey:'doctorID',as:'doctordata'}),
-            staffdata.belongsTo(models.patientdata, {foreignKey:'patientID',as:'patientdata'})
+          staffdata.belongsTo(models.doctordata, 
+          {foreignKey:'doctorID',as:'doctordata'}
+          ),
+            staffdata.belongsTo(models.patientdata,
+             {foreignKey:'patientID',as:'patientdata'}
+             )
         }
       }
     });

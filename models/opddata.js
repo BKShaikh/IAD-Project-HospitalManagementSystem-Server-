@@ -9,9 +9,15 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
-          opdData.belongsTo(models.roomData, { foreignKey: 'roomId', as: 'roomData' }),
-            opdData.belongsTo(models.doctordata, { foreignKey: 'doctorId', as: "doctordata" }),
-            opdData.hasOne(models.patientdata, { as: "patientdata", foreignKey: 'patientId' })
+          opdData.belongsTo(models.roomData,
+           { foreignKey: 'roomId', as: 'roomData' }
+          ),
+            opdData.belongsTo(models.doctordata,
+             { foreignKey: 'doctorId', as: "doctordata" }
+            )
+            // opdData.hasOne(models.patientdata 
+            // // { as: "patientdata", foreignKey: 'patientId' }
+            // )
         }
       }
     });

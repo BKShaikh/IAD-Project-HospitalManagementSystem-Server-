@@ -25,6 +25,30 @@ router.get('/', function (req, res, next) {
 });
 
 
+router.get('/akele', function (req, res, next) {
+
+  db.patientdata.findOne({
+    where: {
+      id: 2
+    }
+  }).then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+});
+
+
 
 router.post('/', function (req, res, next) {
   let patient = {
@@ -36,7 +60,7 @@ router.post('/', function (req, res, next) {
     cnicno: req.body.cnicno,
     dob: req.body.dob,
     age: req.body.age,
-    phoneno:req.body.phoneno,
+    phoneno: req.body.phoneno,
     emergencyphno: req.body.emergencyphno,
     consultantdoc: req.body.consultantdoc
   };
@@ -60,6 +84,8 @@ router.post('/', function (req, res, next) {
 
 });
 
-
+router.delete('/:id', function (req, res, next) {
+  db.patientdata
+});
 
 module.exports = router;

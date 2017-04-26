@@ -42,11 +42,21 @@ module.exports = function (sequelize, DataTypes) {
                 as: 'medicalhistorydata'
               }
             })
-            doctordata.hasOne(models.staffdata, { as: "staffdata", foreignKey: 'doctorID' }),
-            doctordata.belongsTo(models.roomData, { foreignKey: 'roomId', as: 'roomData' }),
-            doctordata.hasOne(models.opdData, { as: 'opdData', foreignKey: 'doctorId' }),
-            doctordata.belongsTo(models.wardData, { foreignKey: 'wardId', as: 'warDdata' }),
-            doctordata.belongsTo(models.emergencyData, { foreignKey: 'emergencyId', as: 'emergencyData' })
+            // doctordata.hasOne(models.staffdata, 
+            // // { as: "staffdata", foreignKey: 'doctorID' }
+            // ),
+            doctordata.belongsTo(models.roomData, 
+            { foreignKey: 'roomId', as: 'roomData' }
+            ),
+            // doctordata.hasOne(models.opdData
+            // // { as:'opdData' foreignKey: 'doctorId'}
+            // ),
+            doctordata.belongsTo(models.wardData,
+             { foreignKey: 'wardId', as: 'warDdata' }
+            ),
+            doctordata.belongsTo(models.emergencyData,
+             { foreignKey: 'emergencyId', as: 'emergencyData' }
+            )
         }
       }
     });
