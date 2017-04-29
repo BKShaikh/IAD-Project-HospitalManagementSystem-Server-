@@ -14,6 +14,9 @@ module.exports = {
       floorNo: {
         type: Sequelize.INTEGER
       },
+      roomNo: {
+        type: Sequelize.INTEGER
+      },
       assignedTo: {
         type: Sequelize.STRING
       },
