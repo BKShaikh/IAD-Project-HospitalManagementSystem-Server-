@@ -3,6 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var roomData = sequelize.define('roomData', {
     roomAssignedFor: DataTypes.STRING,
     floorNo: DataTypes.INTEGER,
+    roomNo: DataTypes.INTEGER,
     assignedTo: DataTypes.STRING
   }, {
       classMethods: {

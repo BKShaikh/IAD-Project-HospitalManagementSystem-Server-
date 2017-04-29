@@ -34,8 +34,8 @@ router.post('/signup', function (req, res, next) {
     let account = {
 
         username: req.body.username,
-        password: req.body.password
-
+        password: req.body.password,
+        roleId : req.body.roleId
     };
     console.log(req.body);
     db.accountdata.create(account).then(

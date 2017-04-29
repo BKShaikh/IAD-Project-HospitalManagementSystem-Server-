@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/akele/:id', function (req, res, next) {
+router.get('/byid/:id', function (req, res, next) {
 
   db.patientdata.findOne({
     where: {
@@ -33,20 +33,18 @@ router.get('/akele/:id', function (req, res, next) {
     }
   }).then(
     function (response) {
-      if (response == null ) {
+      if (response == null) {
         // console.log("idher che"  );
         // function (err) {
 
 
-            res.statusCode = 404;
-            var resBody = {
-                // error: err.errors,
-                suucess: false,
-                // message: err.message,
-            }
-            res.send(resBody);
-        // }
-        // res.send("entered ID is not been set yet");
+        res.statusCode = 404;
+        var resBody = {
+          // error: err.errors,
+          suucess: false,
+          // message: err.message,
+        }
+        res.send(resBody);
       }
       else {
         // console.log("nhi idher che", response);
@@ -65,6 +63,31 @@ router.get('/akele/:id', function (req, res, next) {
       }
       res.send(resBody);
     })
+});
+
+
+router.get('/getopddetail',function(req,res,next){
+  db.patientdata.findAll({
+    include: [opdData]
+  }
+  
+  ).then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+
+
 });
 
 

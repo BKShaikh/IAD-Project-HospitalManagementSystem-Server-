@@ -25,6 +25,51 @@ router.get('/', function (req, res, next) {
 });
 
 
+router.get('byid/:id', function (req, res, next) {
+
+  db.doctordata.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(
+    function (response) {
+      if (response == null ) {
+        // console.log("idher che"  );
+        // function (err) {
+
+
+            res.statusCode = 404;
+            var resBody = {
+                // error: err.errors,
+                suucess: false,
+                // message: err.message,
+            }
+            res.send(resBody);
+        // }
+        // res.send("entered ID is not been set yet");
+      }
+      else {
+        // console.log("nhi idher che", response);
+        res.send(response);
+
+      }
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+});
+
+
+
+
 
 router.post('/', function (req, res, next) {
   let doctor = {

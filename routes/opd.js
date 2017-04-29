@@ -24,5 +24,33 @@ router.get('/', function (req, res, next) {
 
 });
 
+router.post('/', function (req, res, next) {
+
+  let opde = {
+    timingofODs: req.body.timingofODs,
+    doctorId: req.body.doctorId,
+    assignedToDr: req.body.assignedToDr,
+    roomId: req.body.roomId
+  }
+
+  console.log(req.body);
+  db.opdData.create(opde).then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+
+
+});
 
 module.exports = router;
