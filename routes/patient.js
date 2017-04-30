@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models/index');
 
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
@@ -66,12 +67,11 @@ router.get('/byid/:id', function (req, res, next) {
 });
 
 
-router.get('/getopddetail',function(req,res,next){
+router.get('/getopddetail', function (req, res, next) {
   db.patientdata.findAll({
     include: [opdData]
-  }
-  
-  ).then(
+  })
+    .then(
     function (response) {
       res.send(response);
     },
@@ -126,8 +126,85 @@ router.post('/', function (req, res, next) {
 
 });
 
-router.delete('/:id', function (req, res, next) {
-  db.patientdata
+router.delete('/del/:id', function (req, res, next) {
+  db.patientdata.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    // .then(deletedPatient=> {
+    //     res.json(deletedPatient);
+    //     // res.send(response);
+
+    // });
+
+    // })
+    .then(
+    function (response) {
+      res.send(String(response));
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+});
+
+
+
+
+
+
+router.patch('/update/:id', function (req, res, next) {
+  const updates = req.body.updates;
+  db.patientdata.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    
+    .then(patient => {
+      return patient.updateAttributes(updates)
+    })
+    // .then(function (response) {
+    //   if (response == null) {
+    //     res.statusCode = 404;
+    //     var resBody = {
+    //       suucess: false,
+    //     }
+    //     res.send(resBody);
+    //   }
+    // })
+    .then(updatedPatient => {
+      if(updatedPatient== null ){
+        console.log("idher aya")
+          res.statusCode = 404;
+        var resBody = {
+          suucess: false,
+        }
+        res.send(resBody);
+      }
+      else
+      res.send(updatedPatient);
+    },
+    function (err) {
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    }
+    );
+
 });
 
 module.exports = router;

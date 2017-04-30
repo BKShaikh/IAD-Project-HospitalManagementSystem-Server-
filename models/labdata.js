@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var labdata = sequelize.define('labdata', {
     patientId: DataTypes.INTEGER,
     testResultDate: DataTypes.DATEONLY,
-    receptionistName: DataTypes.STRING
+    testName: DataTypes.STRING
   }, {
       classMethods: {
         associate: function (models) {

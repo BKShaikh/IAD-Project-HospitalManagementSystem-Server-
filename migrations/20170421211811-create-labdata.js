@@ -14,7 +14,7 @@ module.exports = {
       testResultDate: {
         type: Sequelize.DATEONLY
       },
-      receptionistName: {
+      testName: {
         type: Sequelize.STRING
       },
       createdAt: {

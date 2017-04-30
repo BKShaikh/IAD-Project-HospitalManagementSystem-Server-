@@ -3,11 +3,12 @@ var router = express.Router();
 var db = require('../models/index');
 
 
-router.get('/login/:id', function (req, res, next) {
+router.post('/login', function (req, res, next) {
 
     db.accountdata.findOne({
         where: {
-            id: req.params.id
+            username: req.body.username,
+            password: req.body.password
         }
     }).then(
         function (response) {
