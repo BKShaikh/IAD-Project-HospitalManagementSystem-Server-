@@ -11,9 +11,6 @@ module.exports = {
       wardNoId: {
         type: Sequelize.INTEGER
       },
-      // patientId: {
-      //   type: Sequelize.INTEGER
-      // },
       totalNoOfBeds: {
         type: Sequelize.INTEGER
       },

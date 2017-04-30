@@ -22,39 +22,40 @@ module.exports = function (sequelize, DataTypes) {
           // associations can be defined here
           patientdata.belongsToMany(models.doctordata, {
             through: {
-              model: models.doctorandpatient
-              // foreignKey: "patientId",
-              // as: 'doctordata'
+              model: models.doctorandpatient,
+              foreignKey: "patientId",
+              as: 'doctordata'
             }
           }),
             patientdata.belongsToMany(models.diseasedata, {
               through: {
-                model: models.patientdisease
-                // foreignKey: "patientId",
-                // as: 'diseasedata'
+                model: models.patientdisease,
+                foreignKey: "patientId",
+                as: 'diseasedata'
               }
             }),
-            // patientdata.hasOne(models.staffdata 
-            // // { as: "staffdata", foreignKey: 'patientID' }
-            // ),
+            patientdata.hasOne(models.staffdata, 
+            { as: "staffdata", foreignKey: 'patientID' }
+            ),
             patientdata.belongsTo(models.roomData, 
             { foreignKey: 'roomId', as: "roomData" }
             ),
             patientdata.belongsTo(models.opdData,
              { foreignKey: 'opdId', as: "opdData" }
              ),
-            // patientdata.hasMany(models.medicalhistorydata 
-            // // { as: 'medicalhistorydata', foreignKey: 'patientId' }
-            // ),
+             console.log("hhhhhh");
+            patientdata.hasMany(models.medicalhistorydata,
+            { as: 'medicalhistorydata', foreignKey: 'patientId' }
+            ),
             patientdata.belongsTo(models.wardData,
             { foreignKey: 'wardId', as: "wardData" }
             ),
             patientdata.belongsTo(models.emergencyData, 
             { foreignKey: 'emergencyId', as: "emergencyData" }
+            ),
+            patientdata.hasMany(models.labdata,
+            { as: 'labdata', foreignKey: 'patientId' }
             )
-            // patientdata.hasMany(models.labdata
-            // // { as: 'labdata', foreignKey: 'patientId' }
-            // )
         }
       }
     });

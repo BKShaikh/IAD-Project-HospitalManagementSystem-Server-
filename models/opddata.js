@@ -4,20 +4,21 @@ module.exports = function (sequelize, DataTypes) {
     timingofODs: DataTypes.TIME,
     doctorId: DataTypes.INTEGER,
     assignedToDr: DataTypes.STRING,
-    roomId: DataTypes.INTEGER
+    roomId: DataTypes.INTEGER,
   }, {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
           opdData.belongsTo(models.roomData,
-           { foreignKey: 'roomId', as: 'roomData' }
+            { foreignKey: 'roomId', as: 'roomData' }
           ),
             opdData.belongsTo(models.doctordata,
-             { foreignKey: 'doctorId', as: "doctordata" }
+              { foreignKey: 'doctorId', as: "doctordata" }
+            ),
+            opdData.hasMany(models.patientdata, 
+            { as: "patientdata", foreignKey: 'opdId' }
             )
-            // opdData.hasOne(models.patientdata 
-            // // { as: "patientdata", foreignKey: 'patientId' }
-            // )
+            // console.log("uuuuu");
         }
       }
     });

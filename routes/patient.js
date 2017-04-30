@@ -69,7 +69,8 @@ router.get('/byid/:id', function (req, res, next) {
 
 router.get('/getopddetail', function (req, res, next) {
   db.patientdata.findAll({
-    include: [opdData]
+    include: [{ models : db.opddata }]
+    
   })
     .then(
     function (response) {
@@ -89,6 +90,29 @@ router.get('/getopddetail', function (req, res, next) {
 
 
 });
+
+
+// router.get('/s', function (res, req, next) {
+//   db.patientdata.findAll({})
+//   .then(patient => {
+//       return patient
+//     })
+//     .patient.getopd().then(
+//     function (response) {
+//       res.send(response);
+//     },
+//     function (err) {
+
+
+//       res.statusCode = 500;
+//       var resBody = {
+//         error: err.errors,
+//         suucess: false,
+//         message: err.message,
+//       }
+//       res.send(resBody);
+//     })
+// });
 
 
 
@@ -168,7 +192,7 @@ router.patch('/update/:id', function (req, res, next) {
       id: req.params.id
     }
   })
-    
+
     .then(patient => {
       return patient.updateAttributes(updates)
     })
@@ -182,16 +206,16 @@ router.patch('/update/:id', function (req, res, next) {
     //   }
     // })
     .then(updatedPatient => {
-      if(updatedPatient== null ){
+      if (updatedPatient == null) {
         console.log("idher aya")
-          res.statusCode = 404;
+        res.statusCode = 404;
         var resBody = {
           suucess: false,
         }
         res.send(resBody);
       }
       else
-      res.send(updatedPatient);
+        res.send(updatedPatient);
     },
     function (err) {
 

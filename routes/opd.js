@@ -53,4 +53,34 @@ router.post('/', function (req, res, next) {
 
 });
 
+
+
+router.get('/getopddetail', function (req, res, next) {
+ 
+  db.opdData.findAll({
+    include: [{ module : db.patiendata }]
+    
+  })
+    .then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+        
+      }
+      res.send(resBody);
+    })
+      console.log("abcdefg")
+
+
+});
+
+
 module.exports = router;

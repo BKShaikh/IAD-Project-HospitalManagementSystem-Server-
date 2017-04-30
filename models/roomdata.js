@@ -9,15 +9,15 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
-          // roomData.hasOne(models.patientdata
-          // //  { as: "patientdata", foreignKey: 'roomId' }
-          //  ),
-          // roomData.hasMany(models.doctordata
-          // //  { as: "doctordata", foreignKey: "roomId" }
-          //  ),
-          //  roomData.hasOne(models.opdData
-          //  { as: "opdData", foreignKey: 'roomId' }
-          // )
+          roomData.hasOne(models.patientdata,
+           { as: "patientdata", foreignKey: 'roomId' }
+           ),
+          roomData.hasMany(models.doctordata,
+           { as: "doctordata", foreignKey: "roomId" }
+           ),
+           roomData.hasOne(models.opdData,
+           { as: "opdData", foreignKey: 'roomId' }
+          )
 
         }
       }

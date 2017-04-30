@@ -11,12 +11,12 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           // associations can be defined here
-          // wardData.hasMany(models.patientdata
-          // //  { as: 'patientdata', foreignKey: 'patientId' }
-          //  ),
-          // wardData.hasMany(models.doctordata
-          // //  { as: 'doctorata', foreignKey: 'doctorId' }
-          //  )
+          wardData.hasMany(models.patientdata,
+           { as: 'patientdata', foreignKey: 'wardId' }
+           ),
+          wardData.hasMany(models.doctordata,
+           { as: 'doctordata', foreignKey: 'wardId' }
+           )
           
         }
       }
