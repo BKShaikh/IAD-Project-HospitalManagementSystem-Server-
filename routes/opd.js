@@ -57,15 +57,27 @@ router.post('/', function (req, res, next) {
 
 router.get('/getopddetail', function (req, res, next) {
  
-  db.opdData.findAll({
-    include: [{ module : db.patiendata }]
+  // db.opdData.findAll({
+  //   include: [{ model : db.patientdata }]
     
+  // })
+  //   .then(
+  //   function (response) {
+  //     res.send(response);
+  //   },
+     db.opdData.find({
+    where: { id: 2 }
+
   })
     .then(
-    function (response) {
-      res.send(response);
-    },
-    function (err) {
+
+    function (opd) {
+      db.patientdata.find({where : {opdId : opd.id }}).then(function (data) {
+        res.send(data);
+      })
+
+    }
+    ,function (err) {
 
 
       res.statusCode = 500;

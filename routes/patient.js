@@ -68,13 +68,17 @@ router.get('/byid/:id', function (req, res, next) {
 
 
 router.get('/getopddetail', function (req, res, next) {
-  db.patientdata.findAll({
-    include: [{ models : db.opddata }]
-    
+  db.patientdata.find({
+    where: { id: 6 }
+
   })
     .then(
-    function (response) {
-      res.send(response);
+
+    function (patient) {
+      db.opdData.find({where : {id : patient.opdId}}).then(function (data) {
+        res.send(data);
+      })
+
     },
     function (err) {
 
