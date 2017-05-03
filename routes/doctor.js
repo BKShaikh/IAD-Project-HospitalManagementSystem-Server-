@@ -147,6 +147,37 @@ router.post('/', function (req, res, next) {
 
 });
 
+router.delete('/del/:id', function (req, res, next) {
+  db.doctordata.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    // .then(deletedPatient=> {
+    //     res.json(deletedPatient);
+    //     // res.send(response);
+
+    // });
+
+    // })
+    .then(
+    function (response) {
+      res.send(String(response));
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+});
+
+
 router.patch('/update/:id', function (req, res, next) {
   const updates = req.body.updates;
   db.doctordata.findOne({

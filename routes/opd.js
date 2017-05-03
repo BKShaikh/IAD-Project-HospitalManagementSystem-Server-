@@ -84,6 +84,38 @@ router.post('/', function (req, res, next) {
 
 
 
+router.delete('/del/:id', function (req, res, next) {
+  db.opdData.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    // .then(deletedPatient=> {
+    //     res.json(deletedPatient);
+    //     // res.send(response);
+
+    // });
+
+    // })
+    .then(
+    function (response) {
+      res.send(String(response));
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+});
+
+
+
 router.get('/getopddetail/:id', function (req, res, next) {
  
   // db.opdData.findAll({
