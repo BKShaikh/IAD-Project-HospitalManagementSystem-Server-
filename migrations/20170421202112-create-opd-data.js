@@ -11,6 +11,9 @@ module.exports = {
       timingofODs: {
         type: Sequelize.TIME
       },
+      dayofOpds: {
+        type: Sequelize.STRING
+      },
       doctorId: {
         type: Sequelize.INTEGER
       },

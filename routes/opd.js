@@ -24,10 +24,39 @@ router.get('/', function (req, res, next) {
 
 });
 
+
+router.get('/detailbyday/:dayofOpds', function (req, res, next) {
+var day = req.params.dayofOpds;
+// console.log(req.params.dayofOpds);
+// console.log(day);
+  db.opdData.findOne({
+    where: { dayofOpds: day }
+
+  }).then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+
+
+});
+
+
 router.post('/', function (req, res, next) {
 
   let opde = {
     timingofODs: req.body.timingofODs,
+    dayofOpds: req.body.dayofOpds,
     doctorId: req.body.doctorId,
     assignedToDr: req.body.assignedToDr,
     roomId: req.body.roomId
@@ -55,7 +84,7 @@ router.post('/', function (req, res, next) {
 
 
 
-router.get('/getopddetail', function (req, res, next) {
+router.get('/getopddetail/:id', function (req, res, next) {
  
   // db.opdData.findAll({
   //   include: [{ model : db.patientdata }]
@@ -66,7 +95,7 @@ router.get('/getopddetail', function (req, res, next) {
   //     res.send(response);
   //   },
      db.opdData.find({
-    where: { id: 2 }
+    where: { id: req.params.id }
 
   })
     .then(
@@ -89,7 +118,7 @@ router.get('/getopddetail', function (req, res, next) {
       }
       res.send(resBody);
     })
-      console.log("abcdefg")
+      // console.log("abcdefg")
 
 
 });
