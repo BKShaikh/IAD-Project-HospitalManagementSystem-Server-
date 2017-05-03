@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
     cnicno: DataTypes.STRING,
     department: DataTypes.STRING,
     specialization: DataTypes.STRING,
-    opdtiming: DataTypes.DATE,
+    opdtiming: DataTypes.TIME,
     emergencyschedule: DataTypes.STRING,
     roomId: DataTypes.INTEGER,
     wardId: DataTypes.INTEGER,

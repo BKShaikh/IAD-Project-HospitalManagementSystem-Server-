@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       opdtiming: {
-        type: Sequelize.DATE
+        type: Sequelize.TIME
       },
       emergencyschedule: {
         type: Sequelize.STRING
