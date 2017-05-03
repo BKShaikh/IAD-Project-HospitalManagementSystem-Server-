@@ -3,8 +3,8 @@ var router = express.Router();
 var db = require('../models/index');
 var jwt = require('jsonwebtoken');
 var ap = require('../app');
-// var superSecret = 'iloveIAD';
-
+var superSecret = 'iloveIAD';
+var verify = require('../middleware');
 
 router.post('/login', function (req, res, next) {
 
@@ -24,7 +24,7 @@ router.post('/login', function (req, res, next) {
             //     }
             //     res.send(resBody);
             // }
-                console.log(jwt.sign(account.toJSON(), 'superSecret', {  expiresIn: 1440}));
+                console.log(account);
             if (!account) {
                 res.json({ success: false, message: 'Authentication failed. Account not found.' })
             }
@@ -69,7 +69,7 @@ router.post('/login', function (req, res, next) {
 });
 
 
-router.post('/signup', function (req, res, next) {
+router.post('/signup',verify.rou ,function (req, res, next) {
 
     let account = {
 

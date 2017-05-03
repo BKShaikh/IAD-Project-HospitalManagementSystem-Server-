@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models/index');
-
+var verify = require('../middleware');
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', verify.rou ,function (req, res, next) {
 
   db.patientdata.findAll({}).then(
     function (response) {
@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/byid/:id', function (req, res, next) {
+router.get('/byid/:id', verify.rou ,function (req, res, next) {
 
   db.patientdata.findOne({
     where: {
@@ -67,7 +67,7 @@ router.get('/byid/:id', function (req, res, next) {
 });
 
 
-router.get('/getopddetail', function (req, res, next) {
+router.get('/getopddetail',verify.rou , function (req, res, next) {
   db.patientdata.find({
     where: { id: 6 }
 
@@ -120,7 +120,7 @@ router.get('/getopddetail', function (req, res, next) {
 
 
 
-router.post('/', function (req, res, next) {
+router.post('/',verify.rou , function (req, res, next) {
   let patient = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -154,7 +154,7 @@ router.post('/', function (req, res, next) {
 
 });
 
-router.delete('/del/:id', function (req, res, next) {
+router.delete('/del/:id',verify.rou , function (req, res, next) {
   db.patientdata.destroy({
     where: {
       id: req.params.id
@@ -189,7 +189,7 @@ router.delete('/del/:id', function (req, res, next) {
 
 
 
-router.patch('/update/:id', function (req, res, next) {
+router.patch('/update/:id',verify.rou , function (req, res, next) {
   const updates = req.body.updates;
   db.patientdata.findOne({
     where: {
@@ -227,7 +227,7 @@ router.patch('/update/:id', function (req, res, next) {
       var resBody = {
         error: err.errors,
         suucess: false,
-        message: err.message,
+        message: err.message+" "+"maybe you're entering unvalid Patient ID ",
       }
       res.send(resBody);
     }

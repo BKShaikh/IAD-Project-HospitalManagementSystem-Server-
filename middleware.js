@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();  
 var superSecret = 'iloveIAD';
+var jwt = require('jsonwebtoken');
 
-
-apiRoutes.use(function(req, res, next) {
+module.exports.rou =(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];

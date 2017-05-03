@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models/index');
-
+var verify = require('../middleware');
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', verify.rou , function (req, res, next) {
 
   db.doctordata.findAll({}).then(
     function (response) {
@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('byid/:id', function (req, res, next) {
+router.get('byid/:id', verify.rou ,function (req, res, next) {
 
   db.doctordata.findOne({
     where: {
@@ -69,7 +69,7 @@ router.get('byid/:id', function (req, res, next) {
 
 
 
-router.get('byname/:name', function (req, res, next) {
+router.get('byname/:name',verify.rou ,function (req, res, next) {
 var name = req.params.name;
   db.doctordata.findOne({
     where: {
@@ -113,7 +113,7 @@ var name = req.params.name;
 
 
 
-router.post('/', function (req, res, next) {
+router.post('/', verify.rou , function (req, res, next) {
   let doctor = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -147,7 +147,7 @@ router.post('/', function (req, res, next) {
 
 });
 
-router.delete('/del/:id', function (req, res, next) {
+router.delete('/del/:id',verify.rou , function (req, res, next) {
   db.doctordata.destroy({
     where: {
       id: req.params.id
@@ -178,7 +178,7 @@ router.delete('/del/:id', function (req, res, next) {
 });
 
 
-router.patch('/update/:id', function (req, res, next) {
+router.patch('/update/:id',verify.rou , function (req, res, next) {
   const updates = req.body.updates;
   db.doctordata.findOne({
     where: {

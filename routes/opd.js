@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models/index');
+var verify = require('../middleware');
 
-
-router.get('/', function (req, res, next) {
+router.get('/', verify.rou ,function (req, res, next) {
 
   db.opdData.findAll({}).then(
     function (response) {
@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/detailbyday/:dayofOpds', function (req, res, next) {
+router.get('/detailbyday/:dayofOpds',verify.rou , function (req, res, next) {
 var day = req.params.dayofOpds;
 // console.log(req.params.dayofOpds);
 // console.log(day);
@@ -52,7 +52,7 @@ var day = req.params.dayofOpds;
 });
 
 
-router.post('/', function (req, res, next) {
+router.post('/', verify.rou ,function (req, res, next) {
 
   let opde = {
     timingofODs: req.body.timingofODs,
@@ -84,7 +84,7 @@ router.post('/', function (req, res, next) {
 
 
 
-router.delete('/del/:id', function (req, res, next) {
+router.delete('/del/:id', verify.rou ,function (req, res, next) {
   db.opdData.destroy({
     where: {
       id: req.params.id
@@ -116,7 +116,7 @@ router.delete('/del/:id', function (req, res, next) {
 
 
 
-router.get('/getopddetail/:id', function (req, res, next) {
+router.get('/getopddetail/:id', verify.rou ,function (req, res, next) {
  
   // db.opdData.findAll({
   //   include: [{ model : db.patientdata }]
@@ -155,5 +155,50 @@ router.get('/getopddetail/:id', function (req, res, next) {
 
 });
 
+router.patch('/update/:id',verify.rou , function (req, res, next) {
+  const updates = req.body.updates;
+  db.opdData.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+
+    .then(opde => {
+      return opde.updateAttributes(updates)
+    })
+    // .then(function (response) {
+    //   if (response == null) {
+    //     res.statusCode = 404;
+    //     var resBody = {
+    //       suucess: false,
+    //     }
+    //     res.send(resBody);
+    //   }
+    // })
+    .then(updatedOpde => {
+      if (updatedOpde == null) {
+        console.log("idher aya")
+        res.statusCode = 404;
+        var resBody = {
+          suucess: false,
+        }
+        res.send(resBody);
+      }
+      else
+        res.send(updatedOpde);
+    },
+    function (err) {
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message+" "+"maybe you're entering unvalid Patient ID ",
+      }
+      res.send(resBody);
+    }
+    );
+
+});
 
 module.exports = router;
