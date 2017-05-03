@@ -6,6 +6,31 @@ var ap = require('../app');
 var superSecret = 'iloveIAD';
 var verify = require('../middleware');
 
+
+router.get('/', verify.rou , function (req, res, next) {
+
+  db.accountdata.findAll({}).then(
+    function (response) {
+      res.send(response);
+    },
+    function (err) {
+
+
+      res.statusCode = 500;
+      var resBody = {
+        error: err.errors,
+        suucess: false,
+        message: err.message,
+      }
+      res.send(resBody);
+    })
+
+
+});
+
+
+
+
 router.post('/login', function (req, res, next) {
 
     db.accountdata.findOne({
