@@ -75,7 +75,8 @@ router.post('/signup', function (req, res, next) {
 
         username: req.body.username,
         password: req.body.password,
-        roleId: req.body.roleId
+        roleId: req.body.roleId,
+        email:req.body.email
     };
     console.log(req.body);
     db.accountdata.create(account).then(
