@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var accountdata = sequelize.define('accountdata', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
+    email: DataTypes.STRING,
     roleId : DataTypes.INTEGER
   }, {
     classMethods: {

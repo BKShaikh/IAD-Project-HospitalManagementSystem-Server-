@@ -32,6 +32,9 @@ module.exports = {
       department: {
         type: Sequelize.STRING
       },
+      post: {
+        type: Sequelize.STRING
+      },
       specialization: {
         type: Sequelize.STRING
       },

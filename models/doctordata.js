@@ -11,6 +11,7 @@ module.exports = function (sequelize, DataTypes) {
     city: DataTypes.STRING,
     cnicno: DataTypes.STRING,
     department: DataTypes.STRING,
+    post: DataTypes.STRING,
     specialization: DataTypes.STRING,
     opdtiming: DataTypes.TIME,
     emergencyschedule: DataTypes.STRING,
@@ -42,20 +43,20 @@ module.exports = function (sequelize, DataTypes) {
                 as: 'medicalhistorydata'
               }
             })
-            // doctordata.hasOne(models.staffdata, 
-            // // { as: "staffdata", foreignKey: 'doctorID' }
-            // ),
-            doctordata.belongsTo(models.roomData, 
+          // doctordata.hasOne(models.staffdata, 
+          // // { as: "staffdata", foreignKey: 'doctorID' }
+          // ),
+          doctordata.belongsTo(models.roomData,
             { foreignKey: 'roomId', as: 'roomData' }
-            ),
+          ),
             // doctordata.hasOne(models.opdData
             // // { as:'opdData' foreignKey: 'doctorId'}
             // ),
             doctordata.belongsTo(models.wardData,
-             { foreignKey: 'wardId', as: 'warDdata' }
+              { foreignKey: 'wardId', as: 'warDdata' }
             ),
             doctordata.belongsTo(models.emergencyData,
-             { foreignKey: 'emergencyId', as: 'emergencyData' }
+              { foreignKey: 'emergencyId', as: 'emergencyData' }
             )
         }
       }

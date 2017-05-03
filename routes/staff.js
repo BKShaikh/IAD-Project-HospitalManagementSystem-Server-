@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', function (req, res, next) {
-  let doctor = {
+  let staff = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     email: req.body.email,
@@ -39,7 +39,7 @@ router.post('/', function (req, res, next) {
     phoneNo: req.body.phoneNo
   };
   console.log(req.body);
-  db.doctordata.create(doctor).then(
+  db.staffdata.create(staff).then(
     function (response) {
       res.send(response);
     },

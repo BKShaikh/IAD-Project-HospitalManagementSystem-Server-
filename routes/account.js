@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../models/index');
 var jwt = require('jsonwebtoken');
 var ap = require('../app');
-var superSecret = 'iloveIAD';
+// var superSecret = 'iloveIAD';
 
 
 router.post('/login', function (req, res, next) {
@@ -24,7 +24,7 @@ router.post('/login', function (req, res, next) {
             //     }
             //     res.send(resBody);
             // }
-
+                console.log(jwt.sign(account.toJSON(), 'superSecret', {  expiresIn: 1440}));
             if (!account) {
                 res.json({ success: false, message: 'Authentication failed. Account not found.' })
             }
@@ -33,7 +33,7 @@ router.post('/login', function (req, res, next) {
                     res.json({ success: false, message: 'Authentication failed. Incorrect password.' })
                 }
                 else {
-                    var token = jwt.sign(account, 'superSecret', {
+                    var token = jwt.sign(account.toJSON(), 'superSecret', {
                         expiresIn: 1440 // expires in 24 hours
                     });
                     // res.json({
